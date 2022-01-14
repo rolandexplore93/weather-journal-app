@@ -50,10 +50,8 @@ document.getElementById('generate').addEventListener('click', performWeatherActi
         windDeg: data.wind.deg,
         windSpeed: data.wind.speed,
     });
-
-    retrieveWeatherData()
+        retrieveWeatherData()
     })
-
 }
 
 //GET request to OpenWeatherAPI to get location weather data
@@ -69,7 +67,6 @@ const getLocationWeather = async (baseURL, loc, key) => {
         console.log('error: location is valid', error)
     }
 }
-// getLocationWeather(baseURL, location, apiKey)
 
 const postLocationWeather = async (url = '', data = {}) => {
     console.log(data);

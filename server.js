@@ -1,7 +1,5 @@
 // Setup an empty JS object to act as endpoint for all routes
-projectData = {
-  name: "vikky"
-};
+projectData = [];
 
 // Express to run server and routes
 const express = require("express");
@@ -32,4 +30,18 @@ const server = app.listen(port, function listener() {
 //GET route to return projectData
 app.get("/abt", (req, res) => {
   res.send(projectData)
+});
+
+app.post('/abt', (req, res) => {
+
+  const newEntry = {
+    temperature: 'Temperature: ' + req.body.temperature + ' degrees',
+    location: req.body.place + ', ' + req.body.country,
+    date: req.body.date,
+    userResponse: req.body.userResponse,
+    time: req.body.time,
+  }
+
+  projectData.push(newEntry);
+  console.log(projectData);
 })

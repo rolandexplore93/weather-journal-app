@@ -10,25 +10,64 @@
 </head>
 <body>
 <div id="app">
-    <div class="holder headline">Weather Journal App</div>
-    <div class ="holder zipcode">
-        <label for="zipcode">Enter Zipcode:</label>
-        <input type="text" id="zipcode" placeholder="enter zip code here">
-    </div>
-    <div class ="holder feel">
-        <label for="feelings">How are you feeling today?</label>
-        <textarea class= "myInput" id="feelings" placeholder="Tell us about your feelings..." rows="9" cols="50"></textarea>
-        <button id="generate" type = "submit"> Generate </button>
-    </div>
-    <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="entryHolder">
-            <div id="date"></div>
-            <div id="temp"></div>
-            <div id="content"></div>
-        </div>
-    </div>
+    
+    
+    <div class="weather-wrapper">
 
+        <div class="wrapper1">
+        <div class="holder headline">Weather Journal App</div>
+        <div>Location: <span id="inputLoc"></span></div>
+
+
+            <div class="userEntry">
+                <div class ="holder location">
+                    <label for="location">Enter location:</label>
+                    <input type="text" id="location" placeholder="enter location here">
+                </div>
+                <div class ="holder feel">
+                    <label for="feelings">Comment:</label>
+                    <textarea class= "myInput" id="feelings" placeholder="Tell us about your feelings..." rows="4" cols="20"></textarea>
+                </div>
+                <button id="generate" type ="submit"> Generate </button>
+            </div>
+            <div class="weather-cards">
+                <div class="card card1">
+                    <p>Forecast</p>
+                    <p>What're the weather?</p>
+                    <br>
+                    <div id="weather-description"></div>
+                    <div id="weather-main"></div>
+                    <div id="coord-lat"></div>
+                    <div id="coord-lon"></div>
+                    <div></div>
+                </div>
+                <div class="card card2">
+                    <p>Air Quality</p>
+                    <p id="main-pressure">Pressure:</p>
+                    <br>
+                    <div id="wind-deg"></div>
+                    <div id="wind-gust"></div>
+                    <div id="wind-speed"></div>
+                    <div id="coord-lon"></div>
+                    <div id="main-humidity"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="holder entry">
+            <div class="title">Most Recent Entry</div>
+            <hr>
+            <div id="entryHolder">
+                <div id="loc"></div>
+                <div id="temp"></div>
+                <div id="content"></div>
+                <div id="date"></div>
+                <div id="time"></div>
+                <hr>
+            </div>
+        </div>
+    
+    </div>
 
 
 

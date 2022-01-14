@@ -28,11 +28,11 @@ const server = app.listen(port, function listener() {
 });
 
 //GET route to return projectData
-app.get("/abt", (req, res) => {
+app.get("/weatherData", (req, res) => {
   res.send(projectData)
 });
 
-app.post('/abt', (req, res) => {
+app.post('/weatherData', (req, res) => {
 
   const newEntry = {
     temperature: 'Temperature: ' + req.body.temperature + ' degrees',
@@ -40,6 +40,17 @@ app.post('/abt', (req, res) => {
     date: req.body.date,
     userResponse: req.body.userResponse,
     time: req.body.time,
+    locationTitle: req.body.locationTitle  + ', ' + req.body.country,
+    weatherDescription: 'Weather Description: ' + req.body.weatherDescription,
+    weatherMain: 'Main: ' + req.body.weatherMain,
+    coordLat: 'Latitude: ' + req.body.coordLat,
+    coordLon: 'Longitude: ' + req.body.coordLon,
+    pressure: req.body.pressure,
+    humidity: 'Humidity: ' + req.body.humidity,
+    minTemp: 'Minimum Temperature: ' + req.body.minTemp,
+    maxTemp: 'Maximum Temperature: ' + req.body.maxTemp,
+    windDeg: 'Wind Degree: ' + req.body.windDeg,
+    windSpeed: 'Wind Speed: ' + req.body.windSpeed
   }
 
   projectData.push(newEntry);

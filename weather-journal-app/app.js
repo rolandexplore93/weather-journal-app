@@ -92,7 +92,7 @@ const postLocationWeather = async (url = '', data = {}) => {
         body: JSON.stringify(data)  //body data type must be the same as Content-Type
     });
     try {
-        const newWeatherData = await res.json();
+        const newWeatherData = await response.json();
         console.log(newWeatherData);
         return newWeatherData
     } catch (error) {

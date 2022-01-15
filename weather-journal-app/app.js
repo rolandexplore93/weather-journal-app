@@ -20,15 +20,7 @@ const dateNow = `${currentMonth} ${currentDate}, ${currentYear}`
 
 // const generateWeatherData
 
-function currentTime(){
-    let timeHours = new Date().getHours();
-    let timeMins = new Date().getMinutes();
-    let timeSecs = new Date().getSeconds();
-    let timePeriod = (timeHours >= 0 && timeHours <= 11) ? 'AM' : 'PM';
-    let timeNow = `${timeHours}:${timeMins}:${timeSecs} ${timePeriod}`
 
-    return timeNow
-}
 
 document.getElementById('generate').addEventListener('click', performWeatherAction);
 
@@ -66,6 +58,16 @@ document.getElementById('generate').addEventListener('click', performWeatherActi
     })
 }
 
+function currentTime(){
+    let timeHours = new Date().getHours();
+    let timeMins = new Date().getMinutes();
+    let timeSecs = new Date().getSeconds();
+    let timePeriod = (timeHours >= 0 && timeHours <= 11) ? 'AM' : 'PM';
+    let timeNow = `${timeHours}:${timeMins}:${timeSecs} ${timePeriod}`
+
+    return timeNow
+}
+
 //GET request to OpenWeatherAPI to get location weather data
 const getLocationWeather = async (baseURL, loc, key) => {
     const res = await fetch(baseURL+loc+key);
@@ -76,7 +78,7 @@ const getLocationWeather = async (baseURL, loc, key) => {
         console.log(newData);
         return newData
     } catch (error) {
-        console.log('error: location is valid', error)
+        console.log('error', error)
     }
 }
 
@@ -129,6 +131,6 @@ const retrieveWeatherData = async () => {
         }
         return newData
     } catch (error) {
-        console.log('error: location is valid', error)
+        console.log('error', error)
     }
 }

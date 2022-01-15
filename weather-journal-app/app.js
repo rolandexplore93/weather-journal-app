@@ -9,16 +9,27 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 const currentMonth = months[month];
 const currentDate = new Date().getDate();
 const currentYear = new Date().getFullYear();
-let timeHours = new Date().getHours();
-let timeMins = new Date().getMinutes();
-let timeSecs = new Date().getSeconds();
-let timePeriod = (timeHours >= 0 && timeHours <= 11) ? 'AM' : 'PM';
-let timeNow = `${timeHours}:${timeMins}:${timeSecs} ${timePeriod}`
+// let timeHours = new Date().getHours();
+// let timeMins = new Date().getMinutes();
+// let timeSecs = new Date().getSeconds();
+// let timePeriod = (timeHours >= 0 && timeHours <= 11) ? 'AM' : 'PM';
+// let timeNow = `${timeHours}:${timeMins}:${timeSecs} ${timePeriod}`
 const dateNow = `${currentMonth} ${currentDate}, ${currentYear}`
 
 // const baseURL = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}'
 
 // const generateWeatherData
+
+function currentTime(){
+    let timeHours = new Date().getHours();
+    let timeMins = new Date().getMinutes();
+    let timeSecs = new Date().getSeconds();
+    let timePeriod = (timeHours >= 0 && timeHours <= 11) ? 'AM' : 'PM';
+    let timeNow = `${timeHours}:${timeMins}:${timeSecs} ${timePeriod}`
+
+    return timeNow
+}
+
 document.getElementById('generate').addEventListener('click', performWeatherAction);
 
 
@@ -37,7 +48,8 @@ document.getElementById('generate').addEventListener('click', performWeatherActi
         country: data.sys.country, 
         date: dateNow, 
         userResponse: userContent, 
-        time: timeNow,
+        // time: timeNow,
+        time: currentTime(),
         locationTitle: data.name,
         weatherDescription: data.weather[0].description,
         weatherMain: data.weather[0].main,

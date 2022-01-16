@@ -3,6 +3,7 @@ projectData = [];
 
 // Express to run server and routes
 const express = require("express");
+const path = require("path")
 
 // Start up an instance app
 const app = express();
@@ -19,7 +20,10 @@ const cors = require("cors");
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static("weather-journal-app"));
+// app.use(express.static("weather-journal-app"));
+
+app.use(express.static(path.resolve(__dirname, "weather-journal-app")));
+
 
 // server setup
 const port = 3000;
@@ -27,6 +31,9 @@ const server = app.listen(port, function listener() {
   console.log("Server is working at port: " + port);
 });
 
+app.get('/', (req, res) => {
+  res.send("Hello world");
+})
 //GET route to return projectData
 app.get("/weatherData", (req, res) => {
   res.send(projectData)

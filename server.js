@@ -32,7 +32,7 @@ const server = app.listen(port, function listener() {
 });
 
 app.get('/', (req, res) => {
-  res.send("Hello world");
+  res.render("index.html");
 })
 //GET route to return projectData
 app.get("/weatherData", (req, res) => {

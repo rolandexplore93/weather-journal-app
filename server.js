@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // server setup
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = app.listen(port, function listener() {
   console.log("Server is working at port: " + port);
 });

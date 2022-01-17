@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Journal App</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+    <div class="weather-wrapper">
+
+        <div class="wrapper1">
+            <div class="holder headline">Weather Journal App</div>
+            <div>Location: <span id="inputLoc"></span></div>
+
+            <div class="userEntry">
+                <div class ="holder location">
+                    <label for="location">Enter location:</label>
+                    <input type="text" id="location" placeholder="enter location here">
+                </div>
+                <div class ="holder feel">
+                    <label for="feelings">Comment:</label>
+                    <textarea class= "myInput" id="feelings" placeholder="Tell us about your feelings..." rows="4" cols="20"></textarea>
+                </div>
+                <button id="generate" type ="submit"> Generate </button>
+            </div>
+            <div class="weather-cards">
+                <div class="card card1">
+                    <p>Forecast</p>
+                    <p style="text-decoration: underline;">Weather Information</p>
+                    <div id="weather-description"></div>
+                    <div id="weather-main"></div>
+                    <div id="coord-lat"></div>
+                    <div id="coord-lon"></div>
+                    <div></div>
+                </div>
+                <div class="card card2">
+                    <p>Air Quality</p>
+                    <div id="">Pressure: <span id="main-pressure"></span></div>
+                    <div id="wind-deg"></div>
+                    <div id="wind-speed"></div>
+                    <div id="min-temp"></div>
+                    <div id="max-temp"></div>
+                    <div id="main-humidity"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="holder entry">
+            <div class="title">Most Recent Entry:</div>
+            <hr>
+            <div id="entryHolder">
+                <div id="loc"></div>
+                <div id="temp"></div>
+                <div id="content"></div>
+                <div id="date"></div>
+                <div id="time"></div>
+                <hr>
+            </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>

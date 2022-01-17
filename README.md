@@ -10,3 +10,23 @@ Asynchronous Javascript: This allows me to use async with HTTP request methods (
 Axios: I used axios to get data from Openweather website API through my server.js file. With this, users do not have access to my API key from the client side.
 
 Chained Promises: Data from the server was connected with GET request to enable the dynamic updates of user's request on the browser interface.
+
+## Project running & installation
+node
+
+Node dependencies installed:
+
+express: npm install express
+
+cors: npm install cors
+
+bodyParser: npm install body-parser
+
+axios: npm install axios
+
+// Express to run server and routes
+const express = require("express");
+
+const path = require("path");
+
+const axios = require("axios");

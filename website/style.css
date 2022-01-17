@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: blue;
+    background-image: 
+        linear-gradient(
+            to right,
+            rgba(238, 238, 238, 0.972) 50%,
+            #82cfe4 50%
+        );
+    padding: 70px 25px;   
+    margin: 0;
+}
+
+#app{
+    /* display: grid; */
+    /* grid-auto-rows: minmax(50px, auto); */
+    height:100%;
+    background: #fff;
+    padding: 30px 10px;
+    width: inherit;
+    margin: auto;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.weather-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.userEntry {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.userEntry > div {
+    /* flex: max(111px, 100%/3 - 20px); */
+    flex: 111px;
+}
+.location, 
+.feel,
+#generate {
+    margin-right: 5px;
+}
+
+.wrapper1 {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px;
+    padding: 5px;
+}
+
+.entry{
+    background: #eee;
+    padding: 5px;
+}
+
+.wrapper1, .entry {
+    height: auto;
+    flex: max(344px, 100%/2 - 20px);
+}
+
+.weather-cards {
+    display: flex;
+    margin-top: 10px;
+}
+
+.card {
+    background: #3b4a6b;
+    border-radius: 10px;
+    width: 100%;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+.card1 {
+    margin-right: 5px;
+    background: #636363;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #a2ab58, #636363);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a2ab58, #636363); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.card2 {
+    margin-right: 10px;
+    margin-left: 5px;
+    background: #40E0D0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label{
+    display:block;
+    font-size: 1rem;
+    color: brown;
+}
+
+input{
+    display:block;
+    height: 40px;
+    width: 100%;
+    background:#22b2da;
+    color: #f0d43a;
+    font-size: 0.8rem;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+}
+
+button{
+    width: 100px;
+    height: 50px;
+    background: #3b4a6b;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
+}
+
+textarea{
+    background:#22b2da;
+    color: #f0d43a;
+    font-size: 0.8rem;
+    font-family: 'Oswald', sans-serif;
+    width: 100%;
+}
+
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #f0d43a; 
+    font-family: 'Oswald', sans-serif;
+} 

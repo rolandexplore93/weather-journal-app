@@ -24,7 +24,7 @@ app.use(cors());
 // Initialize the main project folder using path.resolve()
 // app.use(express.static("weather-journal-app"));
 // app.use(express.static("public"));
-app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "weather-app")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

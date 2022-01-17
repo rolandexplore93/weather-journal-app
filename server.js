@@ -39,6 +39,7 @@ app.get("/weatherData", (req, res) => {
   res.send(projectData)
 })
 
+
 app.post("/", async (req, res) => {
   console.log(req.body)
   const myCity = req.body.myCity;

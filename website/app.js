@@ -5,8 +5,6 @@ document.getElementById('generate').addEventListener('click', performWeatherActi
 function performWeatherAction(){
         const userLocation = document.getElementById('location').value;
         const userContent = document.getElementById('feelings').value;
-        console.log(userLocation);
-        console.log(userContent);
 
         // perform api POST request to the server to get weather data
         postLocationWeather("/", {

@@ -1,6 +1,23 @@
 const locationEntry = document.getElementById('loc');
 const commentInput = document.getElementById('content');
-document.getElementById('generate').addEventListener('click', performWeatherAction);
+document.getElementById('generate').addEventListener('click', validateEntry);
+
+    
+
+    function validateEntry(){
+        const userLocationEntry = document.getElementById('location').value;
+        const userContentEntry = document.getElementById('feelings').value;
+
+        if (userLocationEntry == "" || userContentEntry == ""){
+            alert("You need to add location name and how you feel about this place");
+            console.log(false)
+            return false
+        }else{
+            performWeatherAction()
+            console.log(true)
+            // return true
+        }
+    }
 
 function performWeatherAction(){
         const userLocation = document.getElementById('location').value;

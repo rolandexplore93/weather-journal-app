@@ -36,7 +36,7 @@ const server = app.listen(port, function listener() {
 
 app.get("/weatherData", (req, res) => {
   // res.render("index.html");
-  res.send(projectData)
+  res.send(projectData);
 })
 
 

@@ -1,5 +1,5 @@
 // Setup an empty JS object to act as endpoint for all routes
-projectData = [];
+projectData = {};
 
 // Express to run server and routes
 const express = require("express");
@@ -35,48 +35,77 @@ const server = app.listen(port, function listener() {
 });
 
 app.get("/weatherData", (req, res) => {
-  // res.render("index.html");
   res.send(projectData);
 })
 
 
 app.post("/", async (req, res) => {
-  console.log(req.body)
-  const myCity = req.body.myCity;
+  console.log(typeof req.body)
 
-  const myData = {
-    userComment: req.body.comment,
-    currentTime: req.body.currentTime,
-    updatedDate: req.body.updatedDate
-  }
-
-  console.log(myCity)
-  console.log(myData)
-
-  const apiKey = '3c67eb2a486191e0bf6c7872930b3799';
-  // const apiKey = '&appid=3c67eb2a486191e0bf6c7872930b3799';
-  const baseURL = `https://api.openweathermap.org/data/2.5/weather?q=${myCity}&appid=${apiKey}`;
-
-  try {
-    const response = await axios.get(baseURL);
-    const allResponse = response.data;
-    allResponse.clientside = myData;
-    console.log(allResponse)
-    projectData.push(allResponse);
-    console.log(projectData);
-    res.json(response.data);
-
-  } catch (error){
-    console.log("error", error)
-  }
-
-  // axios.get(baseURL).then(resp => {
-  //   console.log(resp.data)
-  //   projectData.push(resp.data)
-  //   console.log(projectData)
-  // })
+  projectData = req.body;
+  console.log(projectData);
+  res.send(projectData)
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ALTERNATIVE METHOD USING AXIOS
+// API CALL FROM BACKEND
+
+// app.post("/", async (req, res) => {
+//   console.log(req.body)
+//   // const myCity = req.body.myCity;
+
+//   // const myData = {
+//   //   userComment: req.body.comment,
+//   //   currentTime: req.body.currentTime,
+//   //   updatedDate: req.body.updatedDate
+//   // }
+
+//   //  Personal API Key for OpenWeatherMap API
+//   // const apiKey = '3c67eb2a486191e0bf6c7872930b3799&units=metric';
+//   // const baseURL = `https://api.openweathermap.org/data/2.5/weather?q=${myCity}&appid=${apiKey}`;
+
+//   // try {
+//   //   const response = await axios.get(baseURL);
+//   //   const allResponse = response.data;
+//   //   allResponse.clientside = myData;
+//   //   projectData = allResponse;
+//   //   console.log(projectData);
+//   //   res.json(response.data);
+
+//   // } catch (error){
+//   //   console.log("error", error)
+//   // }
+
+//   // axios.get(baseURL).then(resp => {
+//   //   console.log(resp.data)
+//   //   projectData.push(resp.data)
+//   //   console.log(projectData)
+//   // })
+// })
 
 
 //GET route to return projectData

@@ -1,39 +1,66 @@
+const apiKey = '&appid=3c67eb2a486191e0bf6c7872930b3799&units=metric';
+const baseURL = `https://api.openweathermap.org/data/2.5/weather?q=`;
+
 const locationEntry = document.getElementById('loc');
 const commentInput = document.getElementById('content');
+
 document.getElementById('generate').addEventListener('click', validateEntry);
 
     
+function validateEntry(){
+    const userLocationEntry = document.getElementById('location').value;
+    const userContentEntry = document.getElementById('feelings').value;
 
-    function validateEntry(){
-        const userLocationEntry = document.getElementById('location').value;
-        const userContentEntry = document.getElementById('feelings').value;
-
-        if (userLocationEntry == "" || userContentEntry == ""){
-            alert("You need to add location name and how you feel about this place");
-            console.log(false)
-            return false
-        }else{
-            performWeatherAction()
-            console.log(true)
-            // return true
-        }
+    if (userLocationEntry == "" || userContentEntry == ""){
+        alert("You need to add location name and how you feel about this place");
+        console.log(false)
+        return false
+    }else{
+        performWeatherAction()
+        console.log(true)
+        // return true
     }
+}
 
 function performWeatherAction(){
         const userLocation = document.getElementById('location').value;
         const userContent = document.getElementById('feelings').value;
+        const locationEntryValue = userLocation;
+        
+        const callToAPI = baseURL + locationEntryValue + apiKey;
 
-        // perform api POST request to the server to get weather data
+
+
+
+        // CHAINED Promises to getlocation data using GET
+        // Add data to POST and send to app endpoint in the server
+    getLocationWeather(callToAPI).then(function (data){
+        console.log(data);
+
         postLocationWeather("/", {
+            data: data,
             myCity: userLocation, 
             comment: userContent,
             currentTime: currentTime(),
             updatedDate: updatedDate()
-    }).then(function(data){
-            console.log(data)
+    })
 
-        retrieveWeatherData()
-    });
+    retrieveWeatherData()
+
+})
+
+
+// perform api POST request to the server to get weather data
+// postLocationWeather("/", {
+//             myCity: userLocation, 
+//             comment: userContent,
+//             currentTime: currentTime(),
+//             updatedDate: updatedDate()
+//     }).then(function(data){
+//             console.log(data)
+
+//         retrieveWeatherData()
+//     });
 }
 
 function currentTime(){
@@ -62,19 +89,24 @@ function updatedDate(){
 }
 
 
-// //GET request to OpenWeatherAPI to get location weather data
-// const getLocationWeather = async (baseURL, loc, key) => {
-//     const res = await fetch(baseURL+loc+key);
-//     console.log(res)
+//GET request to OpenWeatherAPI to get location weather data
+const getLocationWeather = async (callAPI) => {
+    // const userLocation = document.getElementById('location').value;
+    // const locationEntryValue = locationEntry.value
+    // console.log(locationEntryValue)
 
-//     try {
-//         const newData = await res.json();
-//         console.log(newData);
-//         return newData
-//     } catch (error) {
-//         console.log('error', error)
-//     }
-// }
+    const res = await fetch(callAPI);
+    // console.log(res)
+
+    try {
+        const newData = await res.json();
+        console.log(newData);
+        return newData
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+// getLocationWeather(callToAPI)
 
 const postLocationWeather = async (url = '', data = {}) => {
     console.log(data);
@@ -104,31 +136,32 @@ const retrieveWeatherData = async () => {
 
     try {
         const newData = await res.json();
-        console.log(newData);
-        for (let i = 0; i < newData.length; i++){
-            locationEntry.innerHTML = newData[i].name + ', ' + newData[i].sys.country;
-            document.getElementById('date').innerHTML = newData[i].clientside.updatedDate;
+        // console.log(newData);
+        // Dynamically update the UI with the data received from the server
+            locationEntry.innerHTML = newData.data.name + ', ' + newData.data.sys.country;
+            document.getElementById('date').innerHTML = newData.updatedDate;
             locationEntry.setAttribute('style', 'background: #3b4a6b; color: white;')
-            document.getElementById('temp').innerHTML = 'Temperature: ' + newData[i].main.temp + ' degrees';
-            commentInput.innerHTML = newData[i].clientside.userComment;
+            document.getElementById('temp').innerHTML = 'Temperature: ' + Math.round(newData.data.main.temp) + ' degrees';
+            commentInput.innerHTML = newData.comment;
             commentInput.style.cssText = 'background-color: #FF8C00; color: #fff;';
-            document.getElementById('time').innerHTML = newData[i].clientside.currentTime;
-            document.getElementById('inputLoc').innerHTML = newData[i].name + ', ' + newData[i].sys.country;
+            document.getElementById('time').innerHTML = newData.currentTime;
+            document.getElementById('inputLoc').innerHTML = newData.data.name + ', ' + newData.data.sys.country;
 
-            document.getElementById('weather-description').innerHTML = 'Weather Description: ' + newData[i].weather[0].description;
-            document.getElementById('weather-main').innerHTML = 'Main: ' + newData[i].weather[0].main;
-            document.getElementById('min-temp').innerHTML = 'Min. Temperature: ' + newData[i].main.temp_min + ' degrees';
-            document.getElementById('max-temp').innerHTML = 'Max. Temperature: ' + newData[i].main.temp_max + ' degrees';
-            document.getElementById('main-pressure').innerHTML = newData[i].main.pressure;
-            document.getElementById('main-humidity').innerHTML = 'Humidity: ' + newData[i].main.humidity;
-            document.getElementById('coord-lat').innerHTML = 'Latitude: ' + newData[i].coord.lat;
-            document.getElementById('coord-lon').innerHTML = 'Longitude: ' + newData[i].coord.lon;
-            
-            document.getElementById('wind-deg').innerHTML = 'Wind Degree: ' + newData[i].wind.deg;
-            document.getElementById('wind-speed').innerHTML = 'Wind Speed: ' + newData[i].wind.speed;
-        }
+            document.getElementById('weather-description').innerHTML = 'Weather Description: ' + newData.data.weather[0].description;
+            document.getElementById('weather-main').innerHTML = 'Main: ' + newData.data.weather[0].main;
+            document.getElementById('min-temp').innerHTML = 'Min. Temperature: ' + Math.round(newData.data.main.temp_min) + ' degrees';
+            document.getElementById('max-temp').innerHTML = 'Max. Temperature: ' + Math.round(newData.data.main.temp_max) + ' degrees';
+            document.getElementById('main-pressure').innerHTML = newData.data.main.pressure;
+            document.getElementById('main-humidity').innerHTML = 'Humidity: ' + newData.data.main.humidity;
+            document.getElementById('coord-lat').innerHTML = 'Latitude: ' + newData.data.coord.lat;
+            document.getElementById('coord-lon').innerHTML = 'Longitude: ' + newData.data.coord.lon;
+            document.getElementById('wind-deg').innerHTML = 'Wind Degree: ' + newData.data.wind.deg;
+            document.getElementById('wind-speed').innerHTML = 'Wind Speed: ' + newData.data.wind.speed;
+        
         return newData
     } catch (error) {
         console.log('error', error)
     }
 }
+
+// retrieveWeatherData()
